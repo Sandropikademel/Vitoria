@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Vitoriia, casa comigo?</title>
+    <!-- Importa o CSS -->
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <!-- Canvas para confetes -->
+    <canvas id="confetti"></canvas>
+
+    <!-- Conteúdo principal -->
+    <div class="wrapper">
+      <header class="hero">
+        <h1>Vitoriia, casa comigo?</h1>
+        <!-- Subtítulo aparece com efeito máquina de escrever -->
+        <p id="subtitle" class="subtitle"></p>
+      </header>
+
+      <!-- Um cartãozinho com frase -->
+      <section class="photo-card">
+        <div class="heart-bg"></div>
+        <p class="quote">
+          Desde o primeiro sorriso, eu soube que queria todos os meus amanhãs com você.
+        </p>
+      </section>
+
+      <!-- Botões de resposta -->
+      <section class="cta">
+        <div class="buttons">
+          <button id="yesBtn" class="btn yes">Sim 💍</button>
+          <button id="noBtn" class="btn no">Não 😅</button>
+        </div>
+        <small class="hint">se clicar em “Não”... ele foge 👀</small>
+      </section>
+
+      <!-- Rodapé -->
+      <footer class="footer">
+        <span>Feito com ❤️ especialmente para você</span>
+      </footer>
+    </div>
+
+    <!-- Modal de confirmação -->
+    <div id="modal" class="modal" hidden>
+      <div class="modal-content">
+        <h2>Você disse SIM! 🥹</h2>
+        <p>Prometo amar, cuidar e rir com você todos os dias. Bora planejar esse grande dia? ✨</p>
+        <button class="btn primary" id="shareBtn">Compartilhar</button>
+        <button class="btn outline" id="closeModal">Fechar</button>
+      </div>
+    </div>
+
+    <!-- Importa o JS -->
+    <script src="script.js"></script>
+  </body>
+</html>
