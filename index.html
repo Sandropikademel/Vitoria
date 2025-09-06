@@ -6,7 +6,6 @@
   <title>Vitoriia, casa comigo?</title>
 
   <style>
-    /* ---------- RESET ---------- */
     * { margin: 0; padding: 0; box-sizing: border-box; }
     body {
       font-family: Arial, Helvetica, sans-serif;
@@ -17,8 +16,6 @@
       display: flex;
       flex-direction: column;
     }
-
-    /* ---------- LAYOUT ---------- */
     .wrapper {
       flex: 1;
       display: grid;
@@ -26,24 +23,18 @@
       gap: 2rem;
       padding: 20px;
     }
-
     .hero { text-align: center; }
-
     h1 {
       font-size: 2.5rem;
       color: #111;
-      text-shadow: 1px 1px 2px rgba(0,0,0,.1);
     }
-
     .subtitle {
-      margin-top: 0.75rem;
+      margin-top: .75rem;
       font-size: 1.2rem;
       color: #444;
       min-height: 1.5em;
       text-align: center;
     }
-
-    /* ---------- CARD ---------- */
     .photo-card {
       position: relative;
       max-width: 600px;
@@ -51,11 +42,9 @@
       padding: 20px;
       border-radius: 20px;
       background: rgba(255,255,255, .85);
-      backdrop-filter: blur(5px);
       box-shadow: 0 10px 20px rgba(0,0,0,.15);
       text-align: center;
     }
-
     .heart-bg {
       position: absolute;
       inset: -2px;
@@ -65,26 +54,18 @@
         radial-gradient(circle at 80% 70%, rgba(255,255,255,.3), transparent 40%);
       z-index: -1;
     }
-
-    .quote {
-      font-size: 1.2rem;
-      color: #111;
-    }
-
-    /* ---------- BOTÕES ---------- */
+    .quote { font-size: 1.2rem; color: #111; }
     .cta {
       display: grid;
       place-items: center;
       gap: .75rem;
     }
-
     .buttons {
       display: flex;
       gap: 16px;
       flex-wrap: wrap;
       justify-content: center;
     }
-
     .btn {
       border: none;
       border-radius: 999px;
@@ -92,36 +73,16 @@
       font-size: 1rem;
       cursor: pointer;
       box-shadow: 0 8px 15px rgba(0,0,0,.15);
-      transition: transform .1s ease, box-shadow .2s ease;
+      transition: transform .1s ease;
     }
-
     .btn:hover { transform: scale(1.05); }
     .btn:active { transform: scale(0.95); }
+    .btn.yes { background: linear-gradient(180deg, #111, #444); color: #fff; }
+    .btn.no { background: #f3f4f6; color: #111; }
+    .hint { color: #777; font-size: .9rem; }
+    .footer { text-align: center; color: #aaa; font-size: .9rem; margin-top: 1rem; }
 
-    .btn.yes {
-      background: linear-gradient(180deg, #111, #444);
-      color: #fff;
-    }
-
-    .btn.no {
-      background: #f3f4f6;
-      color: #111;
-    }
-
-    .hint {
-      color: #777;
-      font-size: .9rem;
-    }
-
-    /* ---------- FOOTER ---------- */
-    .footer {
-      text-align: center;
-      color: #aaa;
-      font-size: .9rem;
-      margin-top: 1rem;
-    }
-
-    /* ---------- MODAL ---------- */
+    /* MODAL */
     .modal {
       position: fixed;
       inset: 0;
@@ -130,9 +91,7 @@
       background: rgba(0,0,0,.6);
       padding: 20px;
     }
-
     .modal[hidden] { display: none; }
-
     .modal-content {
       background: #fff;
       border-radius: 15px;
@@ -142,36 +101,31 @@
       box-shadow: 0 10px 30px rgba(0,0,0,.3);
       animation: pop .2s ease;
     }
+    .btn.primary { background: linear-gradient(180deg, #16a34a, #22c55e); color: #fff; margin-top: 12px; }
+    .btn.outline { background: transparent; border: 2px solid #ccc; margin-top: 12px; }
+    @keyframes pop { from { transform: scale(.9); opacity: 0; } to { transform: scale(1); opacity: 1; } }
 
-    .btn.primary {
-      background: linear-gradient(180deg, #16a34a, #22c55e);
-      color: #fff;
-      margin-top: 12px;
-    }
+    /* CONFETTI CANVAS */
+    #confetti { position: fixed; inset: 0; pointer-events: none; z-index: 10; }
 
-    .btn.outline {
-      background: transparent;
-      border: 2px solid #ccc;
-      margin-top: 12px;
-    }
-
-    @keyframes pop {
-      from { transform: scale(.9); opacity: 0; }
-      to { transform: scale(1); opacity: 1; }
-    }
-
-    /* ---------- CONFETTI CANVAS ---------- */
-    #confetti {
+    /* CORAÇÕES */
+    .heart {
       position: fixed;
-      inset: 0;
+      font-size: 1.5rem;
+      animation: rise 4s linear forwards;
       pointer-events: none;
-      z-index: 10;
+    }
+    @keyframes rise {
+      from { transform: translateY(0); opacity: 1; }
+      to { transform: translateY(-120vh); opacity: 0; }
     }
   </style>
 </head>
 <body>
-  <!-- Canvas para confetes -->
   <canvas id="confetti"></canvas>
+
+  <!-- Música -->
+  <audio id="musica" src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3"></audio>
 
   <div class="wrapper">
     <header class="hero">
@@ -184,6 +138,7 @@
       <p class="quote">
         Mesmo você torcendo pro Corinthians... eu ainda gosto de você. 🖤🤍❤️
       </p>
+      <p id="contador" style="margin-top:10px; font-size:0.95rem; color:#555;"></p>
     </section>
 
     <section class="cta">
@@ -199,12 +154,12 @@
     </footer>
   </div>
 
+  <!-- Modal -->
   <div id="modal" class="modal" hidden>
     <div class="modal-content">
       <h2>Você disse SIM! 🥹</h2>
-      <p>
-        Agora não tem mais volta... até o juiz já apitou nosso gol do amor! ⚽💘
-      </p>
+      <p>Agora não tem mais volta... até o juiz já apitou nosso gol do amor! ⚽💘</p>
+      <p style="margin-top:10px; font-style:italic;">P.S.: Mesmo sendo corinthiana, você já ganhou meu coração ❤️</p>
       <button class="btn primary" id="shareBtn">Compartilhar</button>
       <button class="btn outline" id="closeModal">Fechar</button>
     </div>
@@ -224,44 +179,58 @@
       })();
     }
 
+    // ----- Contador -----
+    const contador = document.getElementById('contador');
+    let tempo = 20;
+    const timer = setInterval(() => {
+      contador.textContent = `Você tem ${tempo--} segundos pra dizer SIM antes que eu grite GOOOLLL na rua!`;
+      if (tempo < 0) {
+        contador.textContent = "Já era, vou gritar GOOOLLL mesmo assim! 😂";
+        clearInterval(timer);
+      }
+    }, 1000);
+
     // ----- Botões -----
     const yesBtn = document.getElementById('yesBtn');
     const noBtn  = document.getElementById('noBtn');
     const modal  = document.getElementById('modal');
     const closeModal = document.getElementById('closeModal');
     const shareBtn = document.getElementById('shareBtn');
+    const musica = document.getElementById('musica');
 
-    // Botão "Não" foge e muda de texto
+    // Botão "Não" foge e troca
     function runAway() {
-      const bounds = noBtn.getBoundingClientRect();
-      const vw = window.innerWidth;
-      const vh = window.innerHeight;
-      const newLeft = Math.random() * (vw - bounds.width - 20);
-      const newTop  = Math.random() * (vh - bounds.height - 20);
-      noBtn.style.position = 'fixed';
-      noBtn.style.left = `${newLeft}px`;
-      noBtn.style.top = `${newTop}px`;
+      if (Math.random() < 0.3) {
+        noBtn.textContent = "SIM disfarçado 😏";
+        noBtn.className = "btn yes";
+        noBtn.onclick = () => yesBtn.click();
+      } else {
+        const bounds = noBtn.getBoundingClientRect();
+        const vw = window.innerWidth;
+        const vh = window.innerHeight;
+        const newLeft = Math.random() * (vw - bounds.width - 20);
+        const newTop  = Math.random() * (vh - bounds.height - 20);
+        noBtn.style.position = 'fixed';
+        noBtn.style.left = `${newLeft}px`;
+        noBtn.style.top = `${newTop}px`;
 
-      const frases = [
-        "Clica no SIM 😏",
-        "Foge Corinthians, foge! 🏃‍♂️",
-        "Aqui é amor, não tem 'não'! 🤭"
-      ];
-      noBtn.textContent = frases[Math.floor(Math.random() * frases.length)];
+        const frases = ["Clica no SIM 😏", "Foge Corinthians, foge! 🏃‍♂️", "Aqui é amor, não tem 'não'! 🤭"];
+        noBtn.textContent = frases[Math.floor(Math.random() * frases.length)];
+      }
     }
-
     noBtn.addEventListener('mouseenter', runAway);
     noBtn.addEventListener('click', runAway);
 
     // Botão SIM
     yesBtn.addEventListener('click', () => {
+      musica.play();
       launchConfetti(1200);
+      launchHearts(20);
       modal.hidden = false;
     });
 
     // Fechar modal
     closeModal.addEventListener('click', () => modal.hidden = true);
-    document.addEventListener('keydown', e => { if (e.key === 'Escape') modal.hidden = true; });
 
     // Compartilhar
     shareBtn.addEventListener('click', () => {
@@ -303,7 +272,6 @@
         color: colors[(Math.random() * colors.length) | 0]
       };
     }
-
     function drawPiece(p) {
       ctx.save();
       ctx.translate(p.x, p.y);
@@ -312,7 +280,6 @@
       ctx.fillRect(-p.w/2, -p.h/2, p.w, p.h);
       ctx.restore();
     }
-
     function update() {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
       pieces.forEach(p => {
@@ -323,7 +290,6 @@
       pieces = pieces.filter(p => p.y < canvas.height + 20);
       if (pieces.length) requestAnimationFrame(update);
     }
-
     function launchConfetti(duration = 1000) {
       const end = Date.now() + duration;
       (function frame() {
@@ -331,6 +297,20 @@
         update();
         if (Date.now() < end) requestAnimationFrame(frame);
       })();
+    }
+
+    // ----- Corações subindo -----
+    function launchHearts(qtd) {
+      for (let i = 0; i < qtd; i++) {
+        const heart = document.createElement("div");
+        heart.className = "heart";
+        heart.textContent = "❤️";
+        heart.style.left = Math.random() * 100 + "vw";
+        heart.style.bottom = "0";
+        heart.style.fontSize = (1 + Math.random() * 1.5) + "rem";
+        document.body.appendChild(heart);
+        setTimeout(() => heart.remove(), 4000);
+      }
     }
   </script>
 </body>
