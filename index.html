@@ -203,7 +203,14 @@
     noBtn.addEventListener('mouseenter', runAway);
     noBtn.addEventListener('click', runAway);
 
-    yesBtn.addEventListener('click', () => modal.hidden = false);
+    // Pegadinha no SIM
+    yesBtn.addEventListener('click', () => {
+      alert("Calma aii... clonando os dados do seu cartão 💳😂");
+      setTimeout(() => {
+        modal.hidden = false;
+      }, 3000); // abre o modal depois de 3s
+    });
+
     closeModal.addEventListener('click', () => modal.hidden = true);
 
     // Fundo animado com bolinhas verdes
