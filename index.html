@@ -10,8 +10,8 @@
     * { margin: 0; padding: 0; box-sizing: border-box; }
     body {
       font-family: Arial, Helvetica, sans-serif;
-      background: radial-gradient(circle at top right, #ffe3ec, #ffffff 60%);
-      color: #333;
+      background: radial-gradient(circle at top right, #eeeeee, #ffffff 60%);
+      color: #222;
       overflow-x: hidden;
       min-height: 100vh;
       display: flex;
@@ -31,14 +31,14 @@
 
     h1 {
       font-size: 2.5rem;
-      color: #ff4d6d;
+      color: #111;
       text-shadow: 1px 1px 2px rgba(0,0,0,.1);
     }
 
     .subtitle {
       margin-top: 0.75rem;
       font-size: 1.2rem;
-      color: #555;
+      color: #444;
       min-height: 1.5em;
       text-align: center;
     }
@@ -50,9 +50,9 @@
       margin: 0 auto;
       padding: 20px;
       border-radius: 20px;
-      background: rgba(255,255,255, .7);
+      background: rgba(255,255,255, .85);
       backdrop-filter: blur(5px);
-      box-shadow: 0 10px 20px rgba(0,0,0,.08);
+      box-shadow: 0 10px 20px rgba(0,0,0,.15);
       text-align: center;
     }
 
@@ -61,14 +61,14 @@
       inset: -2px;
       border-radius: 20px;
       background:
-        radial-gradient(circle at 20% 30%, rgba(255,77,109,.2), transparent 40%),
-        radial-gradient(circle at 80% 70%, rgba(255,143,163,.2), transparent 40%);
+        radial-gradient(circle at 20% 30%, rgba(0,0,0,.2), transparent 40%),
+        radial-gradient(circle at 80% 70%, rgba(255,255,255,.3), transparent 40%);
       z-index: -1;
     }
 
     .quote {
       font-size: 1.2rem;
-      color: #333;
+      color: #111;
     }
 
     /* ---------- BOTÕES ---------- */
@@ -91,7 +91,7 @@
       padding: 12px 20px;
       font-size: 1rem;
       cursor: pointer;
-      box-shadow: 0 8px 15px rgba(0,0,0,.1);
+      box-shadow: 0 8px 15px rgba(0,0,0,.15);
       transition: transform .1s ease, box-shadow .2s ease;
     }
 
@@ -99,7 +99,7 @@
     .btn:active { transform: scale(0.95); }
 
     .btn.yes {
-      background: linear-gradient(180deg, #ff4d6d, #ff8fa3);
+      background: linear-gradient(180deg, #111, #444);
       color: #fff;
     }
 
@@ -127,7 +127,7 @@
       inset: 0;
       display: grid;
       place-items: center;
-      background: rgba(0,0,0,.5);
+      background: rgba(0,0,0,.6);
       padding: 20px;
     }
 
@@ -139,7 +139,7 @@
       padding: 20px;
       text-align: center;
       max-width: 500px;
-      box-shadow: 0 10px 30px rgba(0,0,0,.25);
+      box-shadow: 0 10px 30px rgba(0,0,0,.3);
       animation: pop .2s ease;
     }
 
@@ -182,7 +182,7 @@
     <section class="photo-card">
       <div class="heart-bg"></div>
       <p class="quote">
-        Desde que te conheci, até o Wi-Fi parece mais rápido quando estou com você. 📶❤️
+        Mesmo você torcendo pro Corinthians... eu ainda gosto de você. 🖤🤍❤️
       </p>
     </section>
 
@@ -203,7 +203,7 @@
     <div class="modal-content">
       <h2>Você disse SIM! 🥹</h2>
       <p>
-        Agora não tem mais volta... até o GPS já recalculou nossa rota juntos. 🚗💘
+        Agora não tem mais volta... até o juiz já apitou nosso gol do amor! ⚽💘
       </p>
       <button class="btn primary" id="shareBtn">Compartilhar</button>
       <button class="btn outline" id="closeModal">Fechar</button>
@@ -213,7 +213,7 @@
   <script>
     // ----- Máquina de escrever -----
     const subtitle = document.getElementById('subtitle');
-    const message = 'Prometo dividir a pipoca, até quando for a última. 🍿❤️';
+    const message = 'Mesmo com esse coração corinthiano, ele bate junto com o meu. ❤️🖤🤍';
     typeWriter(subtitle, message, 40);
 
     function typeWriter(el, text, speed = 40) {
@@ -242,7 +242,11 @@
       noBtn.style.left = `${newLeft}px`;
       noBtn.style.top = `${newTop}px`;
 
-      const frases = ["Clica no SIM 😏", "Ops, errei a rota 🏃‍♂️", "Não, não existe! 🤭"];
+      const frases = [
+        "Clica no SIM 😏",
+        "Foge Corinthians, foge! 🏃‍♂️",
+        "Aqui é amor, não tem 'não'! 🤭"
+      ];
       noBtn.textContent = frases[Math.floor(Math.random() * frases.length)];
     }
 
@@ -287,7 +291,7 @@
     resize();
 
     function createPiece() {
-      const colors = ['#ff4d6d', '#ff8fa3', '#ffd6e0', '#34d399', '#60a5fa', '#fbbf24'];
+      const colors = ['#111', '#fff', '#ff4d6d', '#22c55e'];
       return {
         x: Math.random() * canvas.width,
         y: -10,
