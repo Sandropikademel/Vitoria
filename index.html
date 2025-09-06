@@ -124,9 +124,6 @@
 <body>
   <canvas id="confetti"></canvas>
 
-  <!-- Música -->
-  <audio id="musica" src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3"></audio>
-
   <div class="wrapper">
     <header class="hero">
       <h1>Vitoriia, casa comigo?</h1>
@@ -158,7 +155,6 @@
   <div id="modal" class="modal" hidden>
     <div class="modal-content">
       <h2>Você disse SIM! 🥹</h2>
-      <p>Agora não tem mais volta... até o juiz já apitou nosso gol do amor! ⚽💘</p>
       <p style="margin-top:10px; font-style:italic;">P.S.: Mesmo sendo corinthiana, você já ganhou meu coração ❤️</p>
       <button class="btn primary" id="shareBtn">Compartilhar</button>
       <button class="btn outline" id="closeModal">Fechar</button>
@@ -196,7 +192,6 @@
     const modal  = document.getElementById('modal');
     const closeModal = document.getElementById('closeModal');
     const shareBtn = document.getElementById('shareBtn');
-    const musica = document.getElementById('musica');
 
     // Botão "Não" foge e troca
     function runAway() {
@@ -219,99 +214,4 @@
       }
     }
     noBtn.addEventListener('mouseenter', runAway);
-    noBtn.addEventListener('click', runAway);
-
-    // Botão SIM
-    yesBtn.addEventListener('click', () => {
-      musica.play();
-      launchConfetti(1200);
-      launchHearts(20);
-      modal.hidden = false;
-    });
-
-    // Fechar modal
-    closeModal.addEventListener('click', () => modal.hidden = true);
-
-    // Compartilhar
-    shareBtn.addEventListener('click', () => {
-      if (navigator.share) {
-        navigator.share({
-          title: 'Ela disse SIM! 💍',
-          text: 'Vitoriia, casa comigo? (spoiler: ela disse sim!)',
-          url: location.href
-        }).catch(()=>{});
-      } else {
-        navigator.clipboard?.writeText(window.location.href);
-        shareBtn.textContent = 'Link copiado!';
-        setTimeout(()=> shareBtn.textContent = 'Compartilhar', 1500);
-      }
-    });
-
-    // ----- Confetes -----
-    const canvas = document.getElementById('confetti');
-    const ctx = canvas.getContext('2d');
-    let pieces = [];
-
-    function resize() {
-      canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight;
-    }
-    window.addEventListener('resize', resize);
-    resize();
-
-    function createPiece() {
-      const colors = ['#111', '#fff', '#ff4d6d', '#22c55e'];
-      return {
-        x: Math.random() * canvas.width,
-        y: -10,
-        w: 6 + Math.random() * 6,
-        h: 10 + Math.random() * 10,
-        r: Math.random() * Math.PI,
-        s: 1 + Math.random() * 2,
-        rot: (Math.random() - 0.5) * 0.2,
-        color: colors[(Math.random() * colors.length) | 0]
-      };
-    }
-    function drawPiece(p) {
-      ctx.save();
-      ctx.translate(p.x, p.y);
-      ctx.rotate(p.r);
-      ctx.fillStyle = p.color;
-      ctx.fillRect(-p.w/2, -p.h/2, p.w, p.h);
-      ctx.restore();
-    }
-    function update() {
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-      pieces.forEach(p => {
-        p.y += p.s;
-        p.r += p.rot;
-        drawPiece(p);
-      });
-      pieces = pieces.filter(p => p.y < canvas.height + 20);
-      if (pieces.length) requestAnimationFrame(update);
-    }
-    function launchConfetti(duration = 1000) {
-      const end = Date.now() + duration;
-      (function frame() {
-        for (let i = 0; i < 10; i++) pieces.push(createPiece());
-        update();
-        if (Date.now() < end) requestAnimationFrame(frame);
-      })();
-    }
-
-    // ----- Corações subindo -----
-    function launchHearts(qtd) {
-      for (let i = 0; i < qtd; i++) {
-        const heart = document.createElement("div");
-        heart.className = "heart";
-        heart.textContent = "❤️";
-        heart.style.left = Math.random() * 100 + "vw";
-        heart.style.bottom = "0";
-        heart.style.fontSize = (1 + Math.random() * 1.5) + "rem";
-        document.body.appendChild(heart);
-        setTimeout(() => heart.remove(), 4000);
-      }
-    }
-  </script>
-</body>
-</html>
+    noBtn.add
