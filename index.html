@@ -118,7 +118,7 @@
   <p id="subtitle" class="subtitle"></p>
 
   <div class="quote-box">
-    <p class="quote">Você já é a resposta de todos os meus ‘e se?’ 💖</p>
+    <p class="quote">Cê já é meu corre mais importante, parça 💕</p>
     <p id="contador" style="margin-top:10px; font-size:0.95rem; color:#ccc;"></p>
   </div>
 
@@ -126,13 +126,13 @@
     <button id="yesBtn" class="btn yes">Sim 💍</button>
     <button id="noBtn" class="btn no">Não 😅</button>
   </div>
-  <p class="hint">se clicar em “Não”... ele foge 👀</p>
+  <p class="hint">se clicar em “Não”... ele mete o pé 👀</p>
 
   <!-- Modal -->
   <div id="modal" class="modal" hidden>
     <div class="modal-content">
-      <h2>Você disse SIM! 🥹</h2>
-      <p style="margin-top:10px; font-style:italic;">P.S.: Você transformou meu mundo no meu lugar favorito 💜</p>
+      <h2>Você disse SIM, truta! 🥹</h2>
+      <p style="margin-top:10px; font-style:italic;">P.S.: Com você, minha vida deixou de ser perrengue e virou mó vibe 💜</p>
       <button class="btn primary" id="shareBtn">Compartilhar</button>
       <button class="btn outline" id="closeModal">Fechar</button>
     </div>
@@ -141,7 +141,7 @@
   <script>
     // Texto digitado
     const subtitle = document.getElementById('subtitle');
-    const message = 'Com você, todos os caminhos parecem levar pra felicidade. ✨';
+    const message = 'Com você, até o rolê mais simples vira mó fita daora ✨';
     typeWriter(subtitle, message, 40);
 
     function typeWriter(el, text, speed = 40) {
@@ -152,13 +152,13 @@
       })();
     }
 
-    // Contador dark com frase nova
+    // Contador com gíria
     const contador = document.getElementById('contador');
     let tempo = 14;
     const timer = setInterval(() => {
-      contador.textContent = `Você tem ${tempo--} segundos pra dizer SIM antes que eu ligue pro seu pai 📞😂`;
+      contador.textContent = `Você tem ${tempo--} segundos pra dizer SIM antes que eu ligue pro seu coroa 📞😂`;
       if (tempo < 0) {
-        contador.textContent = "Alô, sogrão? Acho que ela não quis responder... 😅";
+        contador.textContent = "Alô, sogrão? Sua filha tá moscando no SIM 😅";
         clearInterval(timer);
       }
     }, 1000);
@@ -177,6 +177,13 @@
         noBtn.className = "btn yes";
         noBtn.onclick = () => yesBtn.click();
       } else {
+        const frases = [
+          "Tá tirando? Clica no SIM aí 😏",
+          "Suave, mas o SIM é o caminho certo 🤭",
+          "Tá de caô? Bora de SIM, vai! 😂"
+        ];
+        noBtn.textContent = frases[Math.floor(Math.random()*frases.length)];
+
         const bounds = noBtn.getBoundingClientRect();
         const vw = window.innerWidth;
         const vh = window.innerHeight;
