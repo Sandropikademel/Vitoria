@@ -8,17 +8,17 @@
     * { margin: 0; padding: 0; box-sizing: border-box; }
     body {
       font-family: 'Comic Sans MS', cursive, sans-serif;
-      background: linear-gradient(135deg, #ff0080, #7928ca, #00c6ff);
-      background-size: 300% 300%;
-      animation: gradientMove 8s ease infinite;
+      background: linear-gradient(135deg, #ff0080, #ffdd00, #00c6ff, #00ff88);
+      background-size: 400% 400%;
+      animation: gradientMove 6s ease infinite;
       min-height: 100vh;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
       text-align: center;
-      color: #fff;
       overflow: hidden;
+      color: #fff;
     }
     @keyframes gradientMove {
       0% { background-position: 0% 50%; }
@@ -28,19 +28,20 @@
 
     h1 {
       font-size: 3rem;
-      text-shadow: 2px 2px 10px #000;
+      text-shadow: 3px 3px 10px #000;
     }
     .subtitle {
       margin-top: .5rem;
-      font-size: 1.2rem;
-      color: #fffa;
+      font-size: 1.3rem;
+      color: #fff;
     }
+
     .quote-box {
       background: rgba(0,0,0,0.6);
       padding: 20px;
-      border-radius: 15px;
+      border-radius: 20px;
       margin: 20px;
-      box-shadow: 0 0 20px #000;
+      box-shadow: 0 0 25px #000;
     }
     .quote {
       font-size: 1.3rem;
@@ -56,9 +57,9 @@
     }
     .btn {
       border: none;
-      border-radius: 15px;
-      padding: 15px 25px;
-      font-size: 1.2rem;
+      border-radius: 20px;
+      padding: 15px 30px;
+      font-size: 1.3rem;
       cursor: pointer;
       transition: transform .2s;
     }
@@ -67,25 +68,25 @@
     .btn.yes {
       background: #00ff88;
       color: #000;
-      font-size: 1.5rem;
       font-weight: bold;
-      box-shadow: 0 0 15px #00ff88;
+      font-size: 1.6rem;
+      box-shadow: 0 0 20px #00ff88;
     }
     .btn.no {
-      background: #ff4444;
+      background: #ff2222;
       color: #fff;
-      font-size: .9rem;
+      font-size: 1rem;
       box-shadow: 0 0 10px #ff4444;
       position: relative;
     }
 
     .hint {
       margin-top: 10px;
-      font-size: 0.9rem;
+      font-size: 0.95rem;
       color: #fff;
     }
 
-    /* Modal engraçado */
+    /* Modal */
     .modal {
       position: fixed;
       inset: 0;
@@ -95,21 +96,32 @@
     }
     .modal[hidden] { display: none; }
     .modal-content {
-      background: #222;
+      background: #111;
       padding: 25px;
-      border-radius: 20px;
+      border-radius: 25px;
       text-align: center;
       color: #fff;
       max-width: 400px;
-      box-shadow: 0 0 20px #00ffcc;
+      box-shadow: 0 0 25px #ff00ff;
       animation: pop .3s ease;
     }
     @keyframes pop {
       from { transform: scale(.7); opacity: 0; }
       to { transform: scale(1); opacity: 1; }
     }
-    .btn.primary { background: #00ffcc; color: #000; margin-top: 12px; }
+    .btn.primary { background: #ff00ff; color: #fff; margin-top: 12px; }
     .btn.outline { background: transparent; border: 2px solid #fff; color: #fff; margin-top: 12px; }
+
+    /* Emojis pulando */
+    .emoji {
+      position: absolute;
+      font-size: 2rem;
+      animation: floatUp 5s linear infinite;
+    }
+    @keyframes floatUp {
+      from { transform: translateY(100vh) rotate(0deg); opacity: 1; }
+      to { transform: translateY(-10vh) rotate(360deg); opacity: 0; }
+    }
   </style>
 </head>
 <body>
@@ -117,7 +129,7 @@
   <p id="subtitle" class="subtitle"></p>
 
   <div class="quote-box">
-    <p class="quote">Cê já é meu rolê preferido, até mais que pastel na feira 💕🥟</p>
+    <p class="quote">Cê é tipo Wi-Fi bom: quando tá perto, tudo fica melhor 📶💕</p>
     <p id="contador" style="margin-top:10px; font-size:0.95rem; color:#fffa;"></p>
   </div>
 
@@ -125,14 +137,14 @@
     <button id="yesBtn" class="btn yes">SIMZÃO 💍🔥</button>
     <button id="noBtn" class="btn no">Não kkk 😅</button>
   </div>
-  <p class="hint">se tentar clicar no “Não”, ele vai meter o drift 🏎️</p>
+  <p class="hint">se clicar em “Não”, ele vai fugir mais que motoboy sem troco 🏍️</p>
 
   <!-- Modal -->
   <div id="modal" class="modal" hidden>
     <div class="modal-content">
-      <h2>Você disse SIM, doidera! 🥳💖</h2>
+      <h2>É ISSO! Ela disse SIM! 🎉💖</h2>
       <p style="margin-top:10px; font-style:italic;">
-        P.S.: Agora já era... já vou colocar até no zap “em relacionamento sério” 😂📱
+        P.S.: Agora vou até mudar o status do zap: “em relacionamento sério com a mais braba” 😂📱
       </p>
       <button class="btn primary" id="closeModal">Fechar</button>
     </div>
@@ -141,7 +153,7 @@
   <script>
     // Texto digitado
     const subtitle = document.getElementById('subtitle');
-    const message = 'Com você até fila de banco vira rolê engraçado 😂';
+    const message = 'Com você até rolê na lotérica vira top 😂';
     typeWriter(subtitle, message, 40);
 
     function typeWriter(el, text, speed = 40) {
@@ -152,13 +164,13 @@
       })();
     }
 
-    // Contador engraçado
+    // Contador zoeiro
     const contador = document.getElementById('contador');
     let tempo = 14;
     const timer = setInterval(() => {
-      contador.textContent = `Você tem ${tempo--} segundos pra dizer SIM antes que eu mande áudio cantando Belo 🎤😂`;
+      contador.textContent = `Você tem ${tempo--} segundos pra dizer SIM antes que eu poste no status do zap 🤳😂`;
       if (tempo < 0) {
-        contador.textContent = "Pronto... já mandei o áudio desafinado 🤣";
+        contador.textContent = "Já postei: 'ela não quis' 😭👉👈";
         clearInterval(timer);
       }
     }, 1000);
@@ -172,9 +184,9 @@
     // Não foge
     function runAway() {
       const frases = [
-        "Tá moscando? Só tem SIM 😏",
         "Errado, tenta de novo 😂",
-        "Quase... mas é SIM, parça!"
+        "Kkkkk quase, mas não!",
+        "Tá maluco? O certo é SIM!"
       ];
       noBtn.textContent = frases[Math.floor(Math.random()*frases.length)];
 
@@ -193,6 +205,19 @@
     // SIM abre modal
     yesBtn.addEventListener('click', () => modal.hidden = false);
     closeModal.addEventListener('click', () => modal.hidden = true);
+
+    // Criar emojis pulando
+    const emojis = ["😂","💍","❤️","🔥","😘","🥳"];
+    function createEmoji() {
+      const span = document.createElement("span");
+      span.className = "emoji";
+      span.textContent = emojis[Math.floor(Math.random() * emojis.length)];
+      span.style.left = Math.random() * 100 + "vw";
+      span.style.animationDuration = (4 + Math.random() * 3) + "s";
+      document.body.appendChild(span);
+      setTimeout(() => span.remove(), 7000);
+    }
+    setInterval(createEmoji, 800);
   </script>
 </body>
 </html>
